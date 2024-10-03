@@ -1,0 +1,13 @@
+    <h1 class="text-center">Create Product</h1>
+<section class="d-flex" >
+<form class="d-flex flex-column w-50 gap-2 m-2 justify-content-center align-items-center"method="POST">
+    <input class="w-50" type="text" name="title" id="new-product-title" placeholder="Title" required>
+    <input class="w-50" type="number" name="price" id="new-product-price" placeholder="Price" required min="1">
+    <input class="w-50" type="number" name="stock" id="new-product-stock" placeholder="stock" required min="1">
+    <input class="w-50" type="text" name="category" id="new-product-category" placeholder="Category" required>
+    <input class="btn btn-warning" type="submit" value="Register" id="createNewProductBtn">
+</form>
+
+</section>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="/public/js/createProductSocket.js"></script>

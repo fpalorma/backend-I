@@ -1,0 +1,15 @@
+    <h1 class="text-center">Register users</h1>
+<section class="d-flex" >
+<form class="d-flex flex-column w-50 gap-2 m-2 justify-content-center align-items-center"method="POST" >
+    <input required class="w-50" type="text" name="name" id="name" placeholder="Name" >
+    <input class="w-50" type="email" name="email" id="email" placeholder="Email" required>
+    <input class="w-50" type="password" name="password" id="password" placeholder="Password" required>
+    <input class="btn btn-warning" type="submit" value="Register" id="registerBtn">
+</form>
+<article class="w-50" >
+    LATEST USERS:
+    <span id="update"></span>
+</article>
+</section>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="/public/js/socket.js"></script>

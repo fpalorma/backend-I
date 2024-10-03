@@ -82,4 +82,13 @@ async function deleteUser(req, res, next) {
     }
 }
 
-export { readAllUsers, getUser, create, update, deleteUser }
+const registerView = async (req, res, next) =>{
+    try {
+        const users = await usersManager.read()
+        return res.render("register", {users})
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export { readAllUsers, getUser, create, update, deleteUser, registerView }

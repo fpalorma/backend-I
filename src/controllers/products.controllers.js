@@ -82,4 +82,89 @@ async function deleteProd(req, res, next) {
     }
 }
 
-export { readAllProds, getProduct, create, update, deleteProd }
+async function showProducts(req,res,next){
+    try {
+        let { category } = req.query;
+        let all;
+        if(!category){
+            all = await productsManager.read()
+        }else{
+            all = await productsManager.read(category)
+        }
+        if(all.length > 0){
+            return res.render("products", {data: all})
+            //render nos permite poner un 2do parametro opcional para enviar datos a la plantilla de handlebars
+        }else{
+            const error = new Error("Products not found")
+            error.statusCode = 404;
+            throw error
+        }
+        
+    } catch (error) {
+        return next(error)
+    }
+}
+async function showProductsInIndex(req,res,next){
+    try {
+        let { category } = req.query;
+        let all;
+        if(!category){
+            all = await productsManager.read()
+        }else{
+            all = await productsManager.read(category)
+        }
+        if(all.length > 0){
+            return res.render("index", {data: all})
+            //render nos permite poner un 2do parametro opcional para enviar datos a la plantilla de handlebars
+        }else{
+            const error = new Error("Products not found")
+            error.statusCode = 404;
+            throw error
+        }
+        
+    } catch (error) {
+        return next(error)
+    }
+}
+
+async function showOneProduct (req, res, next) {
+    try {
+        const { pid } = req.params;
+        const response = await productsManager.readOne(pid)
+        if (response) {
+            return res.render("oneProduct",{data:response})
+        } else {
+            const error = new Error("PRODUCT NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+
+    } catch (error) {
+        return next(error)
+    }
+}
+async function updateProductView (req, res, next) {
+    try {
+        const { pid } = req.params;
+        const response = await productsManager.readOne(pid)
+        if (response) {
+            return res.render("updateProduct",{data:response})
+        } else {
+            const error = new Error("PRODUCT NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+
+    } catch (error) {
+        return next(error)
+    }
+}
+const createProductView = (req, res, next) =>{
+    try {  
+        return res.render("createProduct")
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export { readAllProds, getProduct, create, update, deleteProd, showOneProduct, showProducts, showProductsInIndex,updateProductView, createProductView }

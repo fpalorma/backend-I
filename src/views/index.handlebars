@@ -1,0 +1,13 @@
+{{!-- <h1 class="text-center">WearCoder</h1> --}}
+<img src="/public/assets/logo.png" alt="Logo" class="d-block img-fluid mx-auto">
+<p>Welcome! Here you can find all our products</p>
+<section>
+   <div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+{{#each data}}
+    <li class="list-group-item"><a href="/products/{{this.id}}">{{this.title}}</a></li>
+    
+{{/each}}
+  </ul>
+</div>
+</section>

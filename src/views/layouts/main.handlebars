@@ -23,9 +23,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a class="nav-link protectedLink" href="/products">Manager</a>
+        <a id="managerLink"class="nav-link protectedLink" href="/products">Manager</a>
         <a class="nav-link" href="/users/register">Register</a>
-        <a id="perfilLink" class="nav-link" href="/users/:uid">My Profile</a>
+        <a id="profileLink" class="nav-link" href="/users/:uid">My Profile</a>
         <a class="nav-link" href="/users/login">Login</a>
       </div>
     </div>
@@ -49,23 +49,91 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
   function handleClick() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('userId');
-  window.location.href = '/users/login'; 
+  fetch('/users/logout', {
+    method: 'POST',
+    credentials: 'include', 
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = '/users/login';
+    } else {
+      console.error('Error al cerrar sesión');
+    }
+  })
+  .catch(error => console.error('Error:', error));
   }
+</script>
 
-  document.getElementById('perfilLink').addEventListener('click', (event) => {
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/users/getUserId', {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.userId) {
+        const profileLink = document.getElementById('profileLink');
+        profileLink.href = `/users/${data.userId}`;
+        
+      }
+    })
+    
+    .catch(error => {
+      console.error('Error al obtener el uid:', error);
+      alert('Error de autenticación, por favor inicia sesión.');
+      window.location.href = '/login';
+    }); 
+});
+</script>
+
+<script>
+document.getElementById('managerLink').addEventListener('click', (event) => {
+  event.preventDefault(); // Evitar que el enlace se abra inmediatamente
+
+  fetch('/products', {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then(response => {
+      if (response.status === 401) {
+        alert("Debes iniciar sesion ")
+        window.location.href = '/users/login';
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error('Error de solicitud');
+      }
+
+      return window.location.href = '/products';
+    })
+});
+</script>
+<script>
+
+document.getElementById('profileLink').addEventListener('click', (event) => {
   event.preventDefault();
 
-  const userId = localStorage.getItem('userId');
+  fetch(`${document.getElementById('profileLink').href}`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then(response => {
+      if (response.status === 401) {
+        alert("Debes iniciar sesion ")
+        window.location.href = '/users/login';
+        return;
+      }
 
-  if (userId) {
-    window.location.href = `/users/${userId}`;
-  } else {
-    alert('No autorizado. Por favor, inicia sesión.');
-    window.location.href = '/users/login'; // Redirigir al login si no hay ID
-  }
+      if (!response.ok) {
+        throw new Error('Error de solicitud');
+      }
+
+      return window.location.href = document.getElementById('profileLink').href
+    })
 });
+
 </script>
 </body>
 </html>

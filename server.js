@@ -9,10 +9,12 @@ import { Server} from "socket.io";
 import {createServer} from "http"
 import socket from "./src/routers/index.socket.js";
 import cors from "cors"
+import cookieParser from 'cookie-parser'
 
 
 try {
     const server = express()
+    server.use(cookieParser())
     const port = 8000;
     const ready = () => console.log("Server ready on port: http://localhost:" + port);
     const httpServer = createServer(server)

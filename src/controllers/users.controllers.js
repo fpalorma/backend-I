@@ -1,4 +1,6 @@
 import usersManager from "../data/users.manager.js"
+import jwt from 'jsonwebtoken';
+
 
 async function readAllUsers(req, res, next) {
     try {
@@ -108,4 +110,50 @@ async function profileView (req, res, next) {
     }
 }
 
-export { readAllUsers, getUser, create, update, deleteUser, registerView, profileView }
+async function login (req, res) {
+
+    const { email, password } = req.body;
+
+    const user = await usersManager.readByEmail(email);
+    if (!user || password !== user.password) {
+      return res.status(401).json({ success: false, message: 'Email o contraseña incorrectos' });
+    }
+
+    const payload = {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      };
+      const CLAVE='clave_secreta_super_segura' //Esta clave luego la moveré a una variable de entorno
+      const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
+    res.cookie('token', token, {
+      httpOnly: true, 
+      maxAge: 3600000, 
+    });
+  
+    res.json({ success: true, message: 'Autenticación exitosa' });
+}
+
+async function logout (req, res) {
+    res.clearCookie('token', { path: '/' });
+  
+    res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+}
+
+async function getUserId(req, res){
+    const token = req.cookies.token;
+
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, 'clave_secreta_super_segura');
+        
+        res.status(200).json({ userId: decoded.id });
+      } catch (error) {
+        res.status(401).json({ message: 'Token inválido o expirado' });
+      }
+    } else {
+      res.status(401).json({ message: 'No autorizado' });
+    }
+}
+
+export { readAllUsers, getUser, create, update, deleteUser, registerView, profileView, login, logout, getUserId }

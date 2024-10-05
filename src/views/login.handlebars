@@ -1,1 +1,17 @@
-<h1>Login</h1>
+<h1 class="text-center mb-5">Login</h1>
+
+
+
+    <form class="d-flex flex-column w-50 gap-2 justify-content-center align-items-center mx-auto" method="POST" >
+
+  <label for="email" class="form-label">Email address</label>
+  <input  type="email" class="form-control" id="email" placeholder="admin@wearcoder.com" name="email" required>
+  <label for="password" class="form-label">Password</label>
+  <input  type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+  <button class="btn btn-warning" type="submit"  id="loginBtn"> Login </button>
+  </form>
+
+
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="/public/js/loginSocket.js"></script>

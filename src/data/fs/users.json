@@ -55,8 +55,8 @@
  },
  {
   "name": "admin",
-  "email": "admin@wearcode.com",
-  "password": "admin123456",
+  "email": "admin@wearcoder.com",
+  "password": "admin123",
   "photo": "/public/assets/users/user-image.jpg",
   "role": 0,
   "isOnline": false,

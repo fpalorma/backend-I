@@ -1,5 +1,6 @@
 import usersManager from "../data/users.manager.js";
 import productsManager from "../data/products.manager.js"
+import jwt from 'jsonwebtoken';
 
 const socket = async (socket)=>{
     console.log(`Socket connected with ID: ${socket.id}`);
@@ -32,6 +33,25 @@ socket.on("search products", async data=>{
     const productsFiltered = await productsManager.read(data)
     socket.emit("products filtered", productsFiltered)
 })
+
+socket.on('login', async ({ email, password }) => {
+    
+    const user = await usersManager.readByEmail(email);
+    if (!user || password !== user.password) {
+      socket.emit('loginResponse', { success: false, message: 'Email or password not found' });
+      return;
+    }
+
+    const payload = {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    };
+    const CLAVE='clave_secreta_super_segura' //Esta clave luego la moveré a una variable de entorno
+    const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
+
+    socket.emit('loginResponse', { success: true, token, userId: user.id });
+  });
 
 }
 export default socket

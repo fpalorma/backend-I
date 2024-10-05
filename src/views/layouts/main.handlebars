@@ -23,9 +23,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/products">Manager</a>
+        <a class="nav-link protectedLink" href="/products">Manager</a>
         <a class="nav-link" href="/users/register">Register</a>
-        <a class="nav-link" href="/users/bb791928b0e80f082018aaf2">My Profile</a>
+        <a id="perfilLink" class="nav-link" href="/users/:uid">My Profile</a>
         <a class="nav-link" href="/users/login">Login</a>
       </div>
     </div>
@@ -50,8 +50,22 @@
     <script>
   function handleClick() {
   localStorage.removeItem('token');
+  localStorage.removeItem('userId');
   window.location.href = '/users/login'; 
   }
+
+  document.getElementById('perfilLink').addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const userId = localStorage.getItem('userId');
+
+  if (userId) {
+    window.location.href = `/users/${userId}`;
+  } else {
+    alert('No autorizado. Por favor, inicia sesión.');
+    window.location.href = '/users/login'; // Redirigir al login si no hay ID
+  }
+});
 </script>
 </body>
 </html>

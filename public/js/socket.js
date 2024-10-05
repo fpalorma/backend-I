@@ -35,7 +35,6 @@ document.querySelector("#registerBtn").addEventListener("click", (e) => {
     }
 })
 
-//este archivo va a manejar todas las recepciones/emisiones del socket del front
 socket.on("updated users", data => {
     data = data.map(each => `<div>${each.name} - ${each.email}</div>`).join("")
     document.querySelector("#update").innerHTML = data

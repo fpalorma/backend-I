@@ -25,7 +25,11 @@ document.querySelector("#loginBtn").addEventListener("click",(e)=>{
 
   socket.on('loginResponse', (data) => {
     if (data.success) {
-      localStorage.setItem('token', data.token); 
+        const { token, userId } = data;
+
+        // Almacenar el token y el ID del usuario en localStorage
+        localStorage.setItem('token', token); // Almacena el token
+        localStorage.setItem('userId', userId); // Almacena el ID del usuario
       window.location.href = '/'; 
     } else {
       alert(data.message); 

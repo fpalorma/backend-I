@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { showProducts, showOneProduct, createProductView, updateProductView } from '../../controllers/products.controllers.js';
 
 
+
 const productsViewRouter = Router()
 
 productsViewRouter.get("/", showProducts)

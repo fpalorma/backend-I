@@ -22,8 +22,16 @@ socket.on("erase product", async data=>{
     socket.emit("product erased", data);
 })
 
+socket.on("update product", async data=>{
+    const id = await productsManager.update(data.id,data)
+    const productUpdated = await productsManager.readOne(id)
+    socket.emit("updated",productUpdated)
+})
 
-
+socket.on("search products", async data=>{
+    const productsFiltered = await productsManager.read(data)
+    socket.emit("products filtered", productsFiltered)
+})
 
 }
 export default socket

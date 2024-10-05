@@ -1,13 +1,33 @@
 {{!-- <h1 class="text-center">WearCoder</h1> --}}
-<img src="/public/assets/logo.png" alt="Logo" class="d-block img-fluid mx-auto">
-<p>Welcome! Here you can find all our products</p>
+<img src="/public/assets/logo.png" alt="Logo" class="d-block img-fluid mx-auto" style="width: 20%; height: auto;">
+<p class="text-center">Welcome! Here you can find all our products</p>
+<div class="mx-auto text-center">
+
+  <label for="filterByCategory" class="mt-3 text-black ms-3">Filter by category: </label>
+  <select id="filterByCategory" name="category" class="w-50">
+            <option value="">All</option>
+            <option value="pants">pants</option>
+            <option value="shoes">shoes</option>
+            <option value="sweaters">sweaters</option>
+            <option value="accessories">accessories</option>
+            <option value="jackets">jackets</option>
+            <option value="dresses">dresses</option>
+            <option value="tops">tops</option>
+            <option value="skirts">skirts</option>
+            <option value="t-shirts">t-shirts</option>
+            <option value="other">other</option>
+          </select>
+</div>
 <section>
-   <div class="card" style="width: 18rem;">
+   <div class="card mx-auto" style="width: 18rem;">
   <ul class="list-group list-group-flush">
 {{#each data}}
-    <li class="list-group-item"><a href="/products/{{this.id}}">{{this.title}}</a></li>
+    <li class="list-group-item"><a class="product" href="/products/{{this.id}}">{{this.title}}</a></li>
     
 {{/each}}
   </ul>
 </div>
 </section>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="/public/js/allProductsSocket.js"></script>

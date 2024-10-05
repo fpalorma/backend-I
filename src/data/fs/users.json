@@ -61,41 +61,5 @@
   "role": 0,
   "isOnline": false,
   "id": "bb791928b0e80f082018aaf2"
- },
- {
-  "name": "a",
-  "email": "a",
-  "password": "a",
-  "photo": "/public/assets/users/user-image.jpg",
-  "role": 0,
-  "isOnline": false,
-  "id": "6a25cce3a1a2d5ced5bf0fc9"
- },
- {
-  "name": "a",
-  "email": "fedepalorma@gmail.com",
-  "password": "a",
-  "photo": "/public/assets/users/user-image.jpg",
-  "role": 0,
-  "isOnline": false,
-  "id": "d3f0ad2ea838ef1caa86e59f"
- },
- {
-  "name": "a",
-  "email": "fa",
-  "password": "a",
-  "photo": "/public/assets/users/user-image.jpg",
-  "role": 0,
-  "isOnline": false,
-  "id": "64ff5e0a17e639695a4000fb"
- },
- {
-  "name": "a",
-  "email": "a",
-  "password": "a",
-  "photo": "/public/assets/users/user-image.jpg",
-  "role": 0,
-  "isOnline": false,
-  "id": "2733e1868d92d5a1d3aa291d"
  }
 ]

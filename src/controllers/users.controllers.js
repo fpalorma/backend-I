@@ -91,4 +91,21 @@ const registerView = async (req, res, next) =>{
     }
 }
 
-export { readAllUsers, getUser, create, update, deleteUser, registerView }
+async function profileView (req, res, next) {
+    try {
+        const { uid } = req.params;
+        const response = await usersManager.readOne(uid)
+        if (response) {
+            return res.render("myProfile",{data:response})
+        } else {
+            const error = new Error("PRODUCT NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export { readAllUsers, getUser, create, update, deleteUser, registerView, profileView }

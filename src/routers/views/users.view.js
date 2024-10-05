@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { registerView } from '../../controllers/users.controllers.js';
+import { registerView, profileView } from '../../controllers/users.controllers.js';
 
 
 const usersViewRouter = Router()
 
-// Defino la lógica de vistas de los users
 usersViewRouter.get("/register", registerView)
+usersViewRouter.get("/login", (req, res)=>res.render("login"))
+usersViewRouter.get("/:uid", profileView)
+
+
 export default usersViewRouter

@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const socket = async (socket)=>{
     console.log(`Socket connected with ID: ${socket.id}`);
-// Esta callback va a manejar todas las emisiones/recepciones del socket del backend
 socket.on("new user", async data =>{
     
     const id = await usersManager.create(data)

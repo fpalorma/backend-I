@@ -34,10 +34,20 @@ document.querySelector("#updateProductBtn").addEventListener("click", (e) => {
         }
 
         socket.emit("update product", updateProductData)
-        alert("Product updated")
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product updated",
+            showConfirmButton: false,
+            timer: 1500
+          });
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message
+        });
         throw error
     }
 });

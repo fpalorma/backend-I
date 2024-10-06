@@ -27,15 +27,28 @@ document.querySelector("#registerBtn").addEventListener("click", (e) => {
         userData.isOnline = false
     }
     socket.emit("new user", userData)
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "New user registred",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    
+    window.location.href = '/users/login'
         
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message
+          });
         throw error
     }
 })
 
-socket.on("updated users", data => {
-    data = data.map(each => `<div>${each.name} - ${each.email}</div>`).join("")
-    document.querySelector("#update").innerHTML = data
-})
+// socket.on("updated users", data => {
+//     data = data.map(each => `<div>${each.name} - ${each.email}</div>`).join("")
+//     document.querySelector("#update").innerHTML = data
+// })

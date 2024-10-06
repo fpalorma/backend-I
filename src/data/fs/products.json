@@ -1,12 +1,11 @@
-[
- {
-  "title": "Jeans",
-  "photo": "/public/assets/products/products-image.jpg",
-  "category": "pants",
-  "price": "25222",
-  "stock": "2022",
-  "id": "f9b4630a924cc1d35e2df568"
- },
+[{
+    "title": "Jeans",
+    "photo": "/public/assets/products/products-image.jpg",
+    "category": "pants",
+    "price": 25,
+    "stock": 20,
+    "id": "f9b4630a924cc1d35e2df568"
+   },
  {
   "title": "Sneakers",
   "photo": "/public/assets/products/products-image.jpg",
@@ -155,8 +154,8 @@
   "title": "Sunglasses",
   "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
-  "price": 25,
-  "stock": 30,
+  "price": "252",
+  "stock": "30",
   "id": "671a0c8ebdfea17c98e938b3"
  },
  {
@@ -318,5 +317,13 @@
   "price": 25,
   "stock": 12,
   "id": "8a689cf7e50eca24206bf14a"
+ },
+ {
+  "title": "Hat",
+  "price": "20",
+  "stock": "2",
+  "category": "other",
+  "photo": "/public/assets/products/products-image.jpg",
+  "id": "c6ca1f555de87063af48b568"
  }
 ]

@@ -116,7 +116,7 @@ async function login (req, res) {
 
     const user = await usersManager.readByEmail(email);
     if (!user || password !== user.password) {
-      return res.status(401).json({ success: false, message: 'Email o contraseña incorrectos' });
+      return res.status(401).json({ success: false, message: 'Wrong credentials' });
     }
 
     const payload = {
@@ -131,13 +131,13 @@ async function login (req, res) {
       maxAge: 3600000, 
     });
   
-    res.json({ success: true, message: 'Autenticación exitosa' });
+    res.json({ success: true, message: 'Auth successful' });
 }
 
 async function logout (req, res) {
     res.clearCookie('token', { path: '/' });
   
-    res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+    res.status(200).json({ message: 'Session ended' });
 }
 
 async function getUserId(req, res){
@@ -149,10 +149,10 @@ async function getUserId(req, res){
         
         res.status(200).json({ userId: decoded.id });
       } catch (error) {
-        res.status(401).json({ message: 'Token inválido o expirado' });
+        res.status(401).json({ message: 'Token not available' });
       }
     } else {
-      res.status(401).json({ message: 'No autorizado' });
+      res.status(401).json({ message: 'Unauthorized' });
     }
 }
 

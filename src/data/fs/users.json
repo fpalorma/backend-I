@@ -61,5 +61,32 @@
   "role": 0,
   "isOnline": false,
   "id": "bb791928b0e80f082018aaf2"
+ },
+ {
+  "name": "Federico",
+  "email": "fede@wearcoder.com",
+  "password": "123456",
+  "photo": "/public/assets/users/user-image.jpg",
+  "role": 0,
+  "isOnline": false,
+  "id": "14259db150e419348a4328fc"
+ },
+ {
+  "name": "Federico",
+  "email": "fede@asdsad.com",
+  "password": "1234",
+  "photo": "/public/assets/users/user-image.jpg",
+  "role": 0,
+  "isOnline": false,
+  "id": "7ae332528a1eb7c773691296"
+ },
+ {
+  "name": "Federico",
+  "email": "fede@wearcoder.com",
+  "password": "123123",
+  "photo": "/public/assets/users/user-image.jpg",
+  "role": 0,
+  "isOnline": false,
+  "id": "26efa66434064e85c52a06db"
  }
 ]

@@ -33,10 +33,21 @@ document.querySelector("#createNewProductBtn").addEventListener("click", (e) => 
     }
     
     socket.emit("new product", newProductData)
-    alert("Product created")  
+    
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product created",
+        showConfirmButton: false,
+        timer: 1500
+      }); 
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message
+          });
         throw error
     }
 })

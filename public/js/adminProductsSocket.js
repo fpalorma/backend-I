@@ -6,7 +6,27 @@ const deleteProductBtns = document.querySelectorAll("#deleteProductBtn");
         btn.addEventListener("click", (e) => {
             const id = e.currentTarget.value;
             socket.emit("erase product", id);
-            alert("Product deleted")
+            let timerInterval;
+Swal.fire({
+  title: "Deleting product",
+  timer: 1500,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading();
+    const timer = Swal.getPopup().querySelector("b");
+    timerInterval = setInterval(() => {
+      timer.textContent = `${Swal.getTimerLeft()}`;
+    }, 100);
+  },
+  willClose: () => {
+    clearInterval(timerInterval);
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log("I was closed by the timer");
+  }
+});
            
         });
     });

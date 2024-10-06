@@ -7,8 +7,16 @@ document.querySelector("#filterByCategory").addEventListener("change", () => {
 
 socket.on("products filtered", (products) => {
     const productList = products.map(product => `
-            <li class="list-group-item"><a class="product" href="/products/${product.id}">${product.title}</a></li>
+            <div class="col-md-4 mb-4">
+      <div class="card mx-auto" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a class="product" href="/products/${product.id}">${product.title}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     `).join("");
-    document.querySelector("ul").innerHTML = productList; // Actualizar el contenido de la sección de productos
+    document.querySelector("#grid-container").innerHTML = productList; // Actualizar el contenido de la sección de productos
 });

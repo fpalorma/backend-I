@@ -23,11 +23,21 @@
                     window.location.href = '/';
                 } else {
                    
-                    alert(data.message);
+                    
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: data.message
+                      });
                 }
             } catch (error) {
-                console.error('Error de autenticación:', error);
-                alert('Ocurrió un error. Por favor, inténtalo de nuevo.');
+                console.error('Auth error:', error);
+                alert('Something went wrong, please try again.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Something went wrong, please try again.'
+                  });
             }
         });
     });

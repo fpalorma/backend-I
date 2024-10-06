@@ -9,6 +9,7 @@ Para ejecutar el proyecto en tu dispositivo local:
  - Asegurarse de estar en la rama challenge2
  - Instalar paquetes de node `npm i` (instalará express, nodemon, morgan, entre otros módulos de Node.js)
  - Para correr el proyecto `npm run dev`
+ - [VIDEO DE MUESTRA](https://drive.google.com/file/d/1HUw2W8Uq8mpZqBJ621_1DnOHl2tiyoEn/view?usp=sharing)
 
 ## ACTUALIZACIONES:
 

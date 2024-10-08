@@ -1,15 +1,14 @@
-[
- {
-  "title": "Jeans",
-  "photo": "photo.jpg",
-  "category": "pants",
-  "price": 25,
-  "stock": 20,
-  "id": "f9b4630a924cc1d35e2df568"
- },
+[{
+    "title": "Jeans",
+    "photo": "/public/assets/products/products-image.jpg",
+    "category": "pants",
+    "price": 25,
+    "stock": 20,
+    "id": "f9b4630a924cc1d35e2df568"
+   },
  {
   "title": "Sneakers",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "shoes",
   "price": 45,
   "stock": 15,
@@ -17,7 +16,7 @@
  },
  {
   "title": "Hoodie",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "sweaters",
   "price": 30,
   "stock": 12,
@@ -25,7 +24,7 @@
  },
  {
   "title": "Socks",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 15000,
   "stock": 50,
@@ -33,7 +32,7 @@
  },
  {
   "title": "Cap",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 10,
   "stock": 25,
@@ -41,7 +40,7 @@
  },
  {
   "title": "Jacket",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "jackets",
   "price": 55,
   "stock": 8,
@@ -49,7 +48,7 @@
  },
  {
   "title": "Shorts",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 20,
   "stock": 18,
@@ -57,7 +56,7 @@
  },
  {
   "title": "Sweater",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "sweaters",
   "price": 35,
   "stock": 10,
@@ -65,7 +64,7 @@
  },
  {
   "title": "Dress",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "dresses",
   "price": 40,
   "stock": 7,
@@ -73,7 +72,7 @@
  },
  {
   "title": "Scarf",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 8,
   "stock": 30,
@@ -81,7 +80,7 @@
  },
  {
   "title": "Gloves",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 12,
   "stock": 40,
@@ -89,7 +88,7 @@
  },
  {
   "title": "Blouse",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "tops",
   "price": 28,
   "stock": 14,
@@ -97,7 +96,7 @@
  },
  {
   "title": "Tank Top",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "tops",
   "price": 15,
   "stock": 16,
@@ -105,7 +104,7 @@
  },
  {
   "title": "Leggings",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 22,
   "stock": 18,
@@ -113,7 +112,7 @@
  },
  {
   "title": "Boots",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "shoes",
   "price": 60,
   "stock": 10,
@@ -121,7 +120,7 @@
  },
  {
   "title": "Skirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "skirts",
   "price": 22,
   "stock": 12,
@@ -129,7 +128,7 @@
  },
  {
   "title": "Polo Shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "t-shirts",
   "price": 18,
   "stock": 14,
@@ -137,7 +136,7 @@
  },
  {
   "title": "Belt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 15,
   "stock": 25,
@@ -145,7 +144,7 @@
  },
  {
   "title": "Watch",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 80,
   "stock": 5,
@@ -153,15 +152,15 @@
  },
  {
   "title": "Sunglasses",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
-  "price": 25,
-  "stock": 30,
+  "price": "252",
+  "stock": "30",
   "id": "671a0c8ebdfea17c98e938b3"
  },
  {
   "title": "Tie",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 15,
   "stock": 20,
@@ -169,7 +168,7 @@
  },
  {
   "title": "Suit",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "jackets",
   "price": 120,
   "stock": 3,
@@ -177,7 +176,7 @@
  },
  {
   "title": "Sports Jacket",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "jackets",
   "price": 70,
   "stock": 6,
@@ -185,7 +184,7 @@
  },
  {
   "title": "Track Pants",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 35,
   "stock": 10,
@@ -193,7 +192,7 @@
  },
  {
   "title": "Flip Flops",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "shoes",
   "price": 15,
   "stock": 25,
@@ -201,7 +200,7 @@
  },
  {
   "title": "Backpack",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 35,
   "stock": 12,
@@ -209,7 +208,7 @@
  },
  {
   "title": "Wallet",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 20,
   "stock": 18,
@@ -217,7 +216,7 @@
  },
  {
   "title": "Cardigan",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "sweaters",
   "price": 40,
   "stock": 8,
@@ -225,7 +224,7 @@
  },
  {
   "title": "Raincoat",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "jackets",
   "price": 55,
   "stock": 5,
@@ -233,7 +232,7 @@
  },
  {
   "title": "Cargo Pants",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 30,
   "stock": 14,
@@ -241,7 +240,7 @@
  },
  {
   "title": "V-Neck T-shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "t-shirts",
   "price": 14,
   "stock": 20,
@@ -249,7 +248,7 @@
  },
  {
   "title": "Winter Boots",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "shoes",
   "price": 70,
   "stock": 10,
@@ -257,7 +256,7 @@
  },
  {
   "title": "Suit Pants",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 45,
   "stock": 7,
@@ -265,7 +264,7 @@
  },
  {
   "title": "Formal Shoes",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "shoes",
   "price": 80,
   "stock": 6,
@@ -273,7 +272,7 @@
  },
  {
   "title": "Hat",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "accessories",
   "price": 22,
   "stock": 14,
@@ -281,7 +280,7 @@
  },
  {
   "title": "Gym Shorts",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "pants",
   "price": 18,
   "stock": 22,
@@ -289,7 +288,7 @@
  },
  {
   "title": "Graphic T-shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "t-shirts",
   "price": 20,
   "stock": 18,
@@ -297,7 +296,7 @@
  },
  {
   "title": "Long Sleeve Shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "tops",
   "price": 25,
   "stock": 12,
@@ -305,7 +304,7 @@
  },
  {
   "title": "Long Sleeve Shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "tops",
   "price": 25,
   "stock": 12,
@@ -313,10 +312,18 @@
  },
  {
   "title": "Long Sleeve Shirt",
-  "photo": "photo.jpg",
+  "photo": "/public/assets/products/products-image.jpg",
   "category": "tops",
   "price": 25,
   "stock": 12,
   "id": "8a689cf7e50eca24206bf14a"
+ },
+ {
+  "title": "Hat",
+  "price": "20",
+  "stock": "2",
+  "category": "other",
+  "photo": "/public/assets/products/products-image.jpg",
+  "id": "c6ca1f555de87063af48b568"
  }
 ]

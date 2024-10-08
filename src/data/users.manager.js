@@ -59,6 +59,16 @@ class UsersManager {
             throw error
         }
     }
+    async readByEmail(email) {
+        try {
+            const all = await this.read()
+            const one = all.find((each) => each.email === email)
+            return one
+        } catch (error) {
+            console.log(error);
+            throw error
+        }
+    }
 
     async update(id, newData) {
         try {

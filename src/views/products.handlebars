@@ -1,0 +1,21 @@
+<h2 class="text-center">PRODUCTS MANAGER</h2>
+<a href="/products/admin">
+<button type="button" class="btn btn-primary mx-auto d-block mb-3">+ Add new product</button>
+</a>
+<section>
+{{#each data}}
+   <div id={{this.id}} class="card mx-auto" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item mx-auto"><a  href="/products/{{this.id}}">{{this.title}}</a> price: ${{this.price}}</li>
+    
+  </ul>
+  <div class="mx-auto p-2">
+    <button type="button" class="btn btn-success"><a class="text-white text-decoration-none"href="/products/update/{{this.id}}">Update</a></button>
+<button value="{{this.id}}" type="button" class="btn btn-danger" id="deleteProductBtn">Delete</button>
+  </div>
+ 
+</div>
+{{/each}}
+</section>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script type="module" src="/public/js/adminProductsSocket.js"></script>

@@ -100,7 +100,7 @@ async function profileView (req, res, next) {
         if (response) {
             return res.render("myProfile",{data:response})
         } else {
-            const error = new Error("PRODUCT NOT FOUND")
+            const error = new Error("USER NOT FOUND")
             error.statusCode = 404;
             throw error
         }

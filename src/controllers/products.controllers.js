@@ -1,5 +1,3 @@
-// import productsManager from "../data/fs/products.manager.js"
-import mongoose from "mongoose";
 import productsMongoManager from "../data/mongo/managers/products.mongo.js";
 
 async function readAllProds(req, res, next) {
@@ -10,6 +8,25 @@ async function readAllProds(req, res, next) {
         }
         const responseMongo = await productsMongoManager.read(filter)
         if (responseMongo.length > 0) {
+            return res.status(200).json({ responseMongo })
+        } else {
+            const error = new Error("NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+    } catch (error) {
+        return next(error)
+    }
+};
+async function paginate(req, res, next) {
+    try {
+        let filter = {};
+        if (req.query.category) {
+            filter.category = req.query.category;
+        }
+        const { page, limit } = req.query
+        const responseMongo = await productsMongoManager.paginate(filter, { page, limit })
+        if (responseMongo.docs.length > 0) {
             return res.status(200).json({ responseMongo })
         } else {
             const error = new Error("NOT FOUND")
@@ -84,14 +101,7 @@ async function deleteProd(req, res, next) {
 
 async function showProducts(req, res, next) {
     try {
-        // let { category } = req.query;
-        // let all;
-        // if (!category) {
-        //     all = await productsManager.read()
-        // } else {
-        //     all = await productsManager.read(category)
-        // }
-        //Veamos con mongo
+
         let filter = {};
         let all
         if (req.query.category) {
@@ -101,7 +111,6 @@ async function showProducts(req, res, next) {
 
         if (all.length > 0) {
             return res.render("products", { data: all })
-            //render nos permite poner un 2do parametro opcional para enviar datos a la plantilla de handlebars
         } else {
             const error = new Error("Products not found")
             error.statusCode = 404;
@@ -114,14 +123,7 @@ async function showProducts(req, res, next) {
 }
 async function showProductsInIndex(req, res, next) {
     try {
-        // let { category } = req.query;
-        // let all;
-        // if (!category) {
-        //     all = await productsManager.read()
-        // } else {
-        //     all = await productsManager.read(category)
-        // }
-        //Veamos con mongo
+
         let filter = {};
         let all
         if (req.query.category) {
@@ -143,11 +145,9 @@ async function showProductsInIndex(req, res, next) {
 
 async function showOneProduct(req, res, next) {
     try {
-        // const { pid } = req.params;
-        // const response = await productsManager.readOne(pid)
-        //Mongo
+
         const { pid } = req.params;
-        
+
         const response = await productsMongoManager.readOne(pid)
         if (response) {
             return res.render("oneProduct", { data: response })
@@ -185,4 +185,4 @@ const createProductView = (req, res, next) => {
     }
 }
 
-export { readAllProds, getProduct, create, update, deleteProd, showOneProduct, showProducts, showProductsInIndex, updateProductView, createProductView }
+export { readAllProds, paginate, getProduct, create, update, deleteProd, showOneProduct, showProducts, showProductsInIndex, updateProductView, createProductView }

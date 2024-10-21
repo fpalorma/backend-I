@@ -24,7 +24,7 @@ class ProductsMongoManager {
 
     async readOne(pid) {
         try {
-            const readOne = await Product.findOne({_id:pid}).lean()
+            const readOne = await Product.findOne({ _id: pid }).lean()
             return readOne
         } catch (error) {
             console.log(error);
@@ -48,6 +48,16 @@ class ProductsMongoManager {
             return prod
         } catch (error) {
             console.log(error);
+            throw error
+        }
+    }
+
+    async paginate(filter, opts) {
+        try {
+            opts.lean = true;
+            const all = await Product.paginate(filter, opts)
+            return all
+        } catch (error) {
             throw error
         }
     }

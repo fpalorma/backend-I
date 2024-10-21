@@ -53,7 +53,7 @@ document.querySelector("#updateProductBtn").addEventListener("click", (e) => {
 });
 
 socket.on("updated", (data) => {
-    if (data && data.title && data.price && data.stock && data.category && data.id) {
+    try {
         document.querySelector("#new-product-title").value = data.title;
         document.querySelector("#new-product-price").value = data.price;
         document.querySelector("#new-product-stock").value = data.stock;
@@ -61,8 +61,20 @@ socket.on("updated", (data) => {
         const categorySelect = document.querySelector("#new-product-category");
         categorySelect.value = data.category;
 
-        document.querySelector("#updateProductBtn").value = data.id;
-    } else {
-        console.error("Datos insuficientes para actualizar el formulario.");
+        document.querySelector("#updateProductBtn").value = data._id;
+    } catch (error) {
+        console.log(error);
     }
+    // if (data && data.title && data.price && data.stock && data.category && data._id) {
+    //     document.querySelector("#new-product-title").value = data.title;
+    //     document.querySelector("#new-product-price").value = data.price;
+    //     document.querySelector("#new-product-stock").value = data.stock;
+
+    //     const categorySelect = document.querySelector("#new-product-category");
+    //     categorySelect.value = data.category;
+
+    //     document.querySelector("#updateProductBtn").value = data._id;
+    // } else {
+    //     console.error("Datos insuficientes para actualizar el formulario.");
+    // }
 });

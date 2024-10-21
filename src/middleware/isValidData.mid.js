@@ -20,7 +20,7 @@ function isValidData(req, res, next) {
             req.body.photo = "/public/assets/products/products-image.jpg"
         }
         if (!category) {
-            req.body.category = "none"
+            req.body.category = "other"
         }
         if (!price) {
             req.body.price = 1

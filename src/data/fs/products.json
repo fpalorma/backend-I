@@ -1,11 +1,12 @@
-[{
-    "title": "Jeans",
-    "photo": "/public/assets/products/products-image.jpg",
-    "category": "pants",
-    "price": 25,
-    "stock": 20,
-    "id": "f9b4630a924cc1d35e2df568"
-   },
+[
+ {
+  "title": "Jeans",
+  "photo": "/public/assets/products/products-image.jpg",
+  "category": "pants",
+  "price": 25,
+  "stock": 20,
+  "id": "f9b4630a924cc1d35e2df568"
+ },
  {
   "title": "Sneakers",
   "photo": "/public/assets/products/products-image.jpg",
@@ -325,5 +326,13 @@
   "category": "other",
   "photo": "/public/assets/products/products-image.jpg",
   "id": "c6ca1f555de87063af48b568"
+ },
+ {
+  "title": "Short de baño",
+  "price": "2",
+  "stock": "30",
+  "category": "pants",
+  "photo": "/public/assets/products/products-image.jpg",
+  "id": "007994b7807d5285fe83f576"
  }
 ]

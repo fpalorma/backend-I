@@ -2,7 +2,8 @@ const socket = io();
 
 document.querySelector("#filterByCategory").addEventListener("change", () => {
     const selectedCategory = document.querySelector("#filterByCategory").value;
-    socket.emit("search products", selectedCategory);
+    const object = selectedCategory?{"category":selectedCategory}:{}
+    socket.emit("search products", object);
 });
 
 socket.on("products filtered", (products) => {
@@ -11,12 +12,12 @@ socket.on("products filtered", (products) => {
       <div class="card mx-auto" style="width: 18rem;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <a class="product" href="/products/${product.id}">${product.title}</a>
+            <a class="product" href="/products/${product._id}">${product.title}</a>
           </li>
         </ul>
       </div>
     </div>
 
     `).join("");
-    document.querySelector("#grid-container").innerHTML = productList; // Actualizar el contenido de la sección de productos
+    document.querySelector("#grid-container").innerHTML = productList;
 });

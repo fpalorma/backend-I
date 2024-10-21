@@ -1,18 +1,19 @@
-import usersManager from "../data/users.manager.js"
+import usersManager from "../data/fs/users.manager.js"
 import jwt from 'jsonwebtoken';
+import usersMongoManager from "../data/mongo/managers/users.mongo.js";
+import "dotenv/config.js"
+
 
 
 async function readAllUsers(req, res, next) {
     try {
-        let { role } = req.query;
-        let response;
-        if (!role) {
-            response = await usersManager.read()
-        } else {
-            response = await usersManager.read(role)
+        let filter = {};
+        if (req.query.role) {
+            filter.role = req.query.role;
         }
-        if (response.length > 0) {
-            return res.status(200).json({ response })
+        const responseMongo = await usersMongoManager.read(filter)
+        if (responseMongo.length > 0) {
+            return res.status(200).json({ responseMongo })
         } else {
             const error = new Error("NOT FOUND")
             error.statusCode = 404;
@@ -26,7 +27,7 @@ async function readAllUsers(req, res, next) {
 async function getUser(req, res, next) {
     try {
         const { uid } = req.params;
-        const response = await usersManager.readOne(uid)
+        const response = await usersMongoManager.readOne(uid)
         if (response) {
             return res.status(200).json({ response })
         } else {
@@ -44,7 +45,7 @@ async function create(req, res, next) {
     try {
         let data = req.body
 
-        const responseManager = await usersManager.create(data)
+        const responseManager = await usersMongoManager.create(data)
         return res.status(201).json({ message: "User created", response: responseManager })
 
     } catch (error) {
@@ -56,9 +57,9 @@ async function update(req, res, next) {
     try {
         const { uid } = req.params;
         const newData = req.body;
-        const responseManager = await usersManager.update(uid, newData);
+        const responseManager = await usersMongoManager.update(uid, newData);
         if (!responseManager) {
-            const error = new Error(`User with id ${uid} doesnt exists`)
+            const error = new Error(`user with id ${uid} doesnt exists`)
             error.statusCode = 404;
             throw error
         }
@@ -71,34 +72,33 @@ async function update(req, res, next) {
 async function deleteUser(req, res, next) {
     try {
         const { uid } = req.params;
-        const responseManager = await usersManager.delete(uid);
+        const responseManager = await usersMongoManager.delete(uid);
         if (!responseManager) {
             const error = new Error(`User with id ${uid} not found`)
             error.statusCode = 404;
             throw error
         };
         return res.status(200).json({ message: "User deleted", response: responseManager })
-
     } catch (error) {
         return next(error)
     }
 }
 
-const registerView = async (req, res, next) =>{
+const registerView = async (req, res, next) => {
     try {
         const users = await usersManager.read()
-        return res.render("register", {users})
+        return res.render("register", { users })
     } catch (error) {
         return next(error)
     }
 }
 
-async function profileView (req, res, next) {
+async function profileView(req, res, next) {
     try {
         const { uid } = req.params;
-        const response = await usersManager.readOne(uid)
+        const response = await usersMongoManager.readOne(uid)
         if (response) {
-            return res.render("myProfile",{data:response})
+            return res.render("myProfile", { data: response })
         } else {
             const error = new Error("USER NOT FOUND")
             error.statusCode = 404;
@@ -110,49 +110,50 @@ async function profileView (req, res, next) {
     }
 }
 
-async function login (req, res) {
+async function login(req, res) {
 
     const { email, password } = req.body;
 
-    const user = await usersManager.readByEmail(email);
+    const user = await usersMongoManager.readByEmail(email);
     if (!user || password !== user.password) {
-      return res.status(401).json({ success: false, message: 'Wrong credentials' });
+        return res.status(401).json({ success: false, message: 'Wrong credentials' });
     }
 
     const payload = {
         id: user.id,
         email: user.email,
         role: user.role,
-      };
-      const CLAVE='clave_secreta_super_segura' //Esta clave luego la moveré a una variable de entorno
-      const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
+    };
+    const CLAVE = process.env.SECRET_KEY
+    const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
     res.cookie('token', token, {
-      httpOnly: true, 
-      maxAge: 3600000, 
+        httpOnly: true,
+        maxAge: 3600000,
     });
-  
+
     res.json({ success: true, message: 'Auth successful' });
 }
 
-async function logout (req, res) {
+async function logout(req, res) {
     res.clearCookie('token', { path: '/' });
-  
+
     res.status(200).json({ message: 'Session ended' });
 }
 
-async function getUserId(req, res){
+async function getUserId(req, res) {
     const token = req.cookies.token;
 
     if (token) {
-      try {
-        const decoded = jwt.verify(token, 'clave_secreta_super_segura');
-        
-        res.status(200).json({ userId: decoded.id });
-      } catch (error) {
-        res.status(401).json({ message: 'Token not available' });
-      }
+        try {
+            const clave = process.env.SECRET_KEY
+            const decoded = jwt.verify(token, clave);
+
+            res.status(200).json({ userId: decoded.id });
+        } catch (error) {
+            res.status(401).json({ message: 'Token not available' });
+        }
     } else {
-      res.status(401).json({ message: 'Unauthorized' });
+        res.status(401).json({ message: 'Unauthorized' });
     }
 }
 

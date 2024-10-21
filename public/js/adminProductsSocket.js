@@ -5,6 +5,7 @@ const deleteProductBtns = document.querySelectorAll("#deleteProductBtn");
     deleteProductBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             const id = e.currentTarget.value;
+            console.log(id+ "es id");
             socket.emit("erase product", id);
             let timerInterval;
 Swal.fire({
@@ -22,7 +23,7 @@ Swal.fire({
     clearInterval(timerInterval);
   }
 }).then((result) => {
-  /* Read more about handling dismissals below */
+
   if (result.dismiss === Swal.DismissReason.timer) {
     console.log("I was closed by the timer");
   }

@@ -21,7 +21,7 @@ document.querySelector("#registerBtn").addEventListener("click", (e) => {
         userData.photo = "/public/assets/users/user-image.jpg"
     }
     if (!role) {
-        userData.role = 0
+        userData.role = "user"
     }
     if (!isOnline) {
         userData.isOnline = false

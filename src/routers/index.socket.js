@@ -1,56 +1,56 @@
-import usersManager from "../data/users.manager.js";
-import productsManager from "../data/products.manager.js"
+// import usersManager from "../data/fs/users.manager.js";
+// import productsManager from "../data/fs/products.manager.js"
 import jwt from 'jsonwebtoken';
+import productsMongoManager from "../data/mongo/managers/products.mongo.js";
+import usersMongoManager from "../data/mongo/managers/users.mongo.js";
 
-const socket = async (socket)=>{
+const socket = async (socket) => {
     console.log(`Socket connected with ID: ${socket.id}`);
-socket.on("new user", async data =>{
-    
-    const id = await usersManager.create(data)
-    const allUsers = await usersManager.read()
-    socket.emit("updated users", allUsers)
-})
-const allUsers = await usersManager.read()
-socket.emit("updated users", allUsers)
+    socket.on("new user", async data => {
 
-socket.on("new product", async data=>{
-    const id = await productsManager.create(data)
-})
+        const newUser = await usersMongoManager.create(data)
+        
+        socket.emit("updated users", newUser)
+    })
 
-socket.on("erase product", async data=>{
-    const id = await productsManager.delete(data)
-    socket.emit("product erased", data);
-})
+    socket.on("new product", async data => {
+        const id = await productsMongoManager.create(data)
+    })
 
-socket.on("update product", async data=>{
-    const id = await productsManager.update(data.id,data)
-    const productUpdated = await productsManager.readOne(id)
-    socket.emit("updated",productUpdated)
-})
+    socket.on("erase product", async data => {
+        const id = await productsMongoManager.delete(data)
+        socket.emit("product erased", data);
+    })
 
-socket.on("search products", async data=>{
-    const productsFiltered = await productsManager.read(data)
-    socket.emit("products filtered", productsFiltered)
-})
+    socket.on("update product", async data => {
+        const id = await productsMongoManager.update(data.id, data)
+        const productUpdated = await productsMongoManager.readOne(id)
+        socket.emit("updated", productUpdated)
+    })
 
-socket.on('login', async ({ email, password }) => {
-    
-    const user = await usersManager.readByEmail(email);
-    if (!user || password !== user.password) {
-      socket.emit('loginResponse', { success: false, message: 'Email or password not found' });
-      return;
-    }
+    socket.on("search products", async data => {
+        const productsFiltered = await productsMongoManager.read(data)
+        socket.emit("products filtered", productsFiltered)
+    })
 
-    const payload = {
-      id: user.id,
-      email: user.email,
-      role: user.role,
-    };
-    const CLAVE='clave_secreta_super_segura' //Esta clave luego la moveré a una variable de entorno
-    const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
+    socket.on('login', async ({ email, password }) => {
 
-    socket.emit('loginResponse', { success: true, token, userId: user.id });
-  });
+        const user = await usersMongoManager.readByEmail(email);
+        if (!user || password !== user.password) {
+            socket.emit('loginResponse', { success: false, message: 'Email or password not found' });
+            return;
+        }
+
+        const payload = {
+            id: user.id,
+            email: user.email,
+            role: user.role,
+        };
+        const CLAVE = process.env.SECRET_KEY
+        const token = jwt.sign(payload, CLAVE, { expiresIn: '1h' });
+
+        socket.emit('loginResponse', { success: true, token, userId: user.id });
+    });
 
 }
 export default socket

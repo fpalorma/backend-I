@@ -120,7 +120,7 @@ async function login(req, res) {
     }
 
     const payload = {
-        id: user.id,
+        id: user._id.toString(),
         email: user.email,
         role: user.role,
     };

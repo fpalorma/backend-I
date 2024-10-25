@@ -1,4 +1,5 @@
 
+
 document.addEventListener('DOMContentLoaded', () => {
   fetch('/users/getUserId', {
     method: 'GET',
@@ -65,18 +66,17 @@ document.getElementById('managerLink').addEventListener('click', (event) => {
       }
 
       if (!response.ok) {
-        throw new Error('Bad request');
+        throw new Error('Bad request1');
       }
 
       window.location.href = '/products';
     })
-    .catch(error => console.error('Bad request', error));
+    .catch(error => console.error('Bad request2', error));
 });
 
 
 document.getElementById('profileLink').addEventListener('click', (event) => {
   event.preventDefault();
-
   fetch(`${document.getElementById('profileLink').href}`, {
     method: 'GET',
     credentials: 'include',
@@ -93,9 +93,8 @@ document.getElementById('profileLink').addEventListener('click', (event) => {
       }
 
       if (!response.ok) {
-        throw new Error('Bad request');
+        throw new Error('Bad request3');
       }
-
       return window.location.href = document.getElementById('profileLink').href
     })
 });

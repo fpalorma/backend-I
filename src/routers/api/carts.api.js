@@ -1,11 +1,13 @@
 import { Router } from 'express';
-import { readAllCarts, getCart, create, update, deleteCart } from "../../controllers/carts.controllers.js";
+import { readAllCarts, getCart, create, update, deleteCart, calculateTotal } from "../../controllers/carts.controllers.js";
 
 
 
 const cartsApiRouter = Router()
 
 cartsApiRouter.get("/", readAllCarts)
+
+cartsApiRouter.get("/total/:uid", calculateTotal)
 
 cartsApiRouter.get("/:cid", getCart)
 

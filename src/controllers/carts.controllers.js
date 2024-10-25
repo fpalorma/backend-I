@@ -79,8 +79,16 @@ async function deleteCart(req, res, next) {
         return next(error)
     }
 }
+async function calculateTotal(req, res, next){
+    try {
+        const { uid } = req.params;
+        const response = await cartsMongoManager.calculateTotal(uid)
+        return res.status(200).json({response})
+    } catch (error) {
+        return next(error)
+    }
+}
 
 
 
-
-export { readAllCarts, getCart, create, update, deleteCart }
+export { readAllCarts, getCart, create, update, deleteCart, calculateTotal }

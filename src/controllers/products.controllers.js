@@ -121,6 +121,30 @@ async function showProducts(req, res, next) {
         return next(error)
     }
 }
+
+async function showpaginated(req, res, next) {
+    try {
+        let filter = {};
+        if (req.query.category) {
+            filter.category = req.query.category;
+        }
+        const options = {
+            page: req.query.page || 1,
+            limit: 6,
+          };
+        const responseMongo = await productsMongoManager.paginate(filter, options)
+        if (responseMongo.docs.length > 0) {
+            return res.render("index", { data: responseMongo })
+        } else {
+            const error = new Error("NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+    } catch (error) {
+        return next(error)
+    }
+};
+
 async function showProductsInIndex(req, res, next) {
     try {
 
@@ -185,4 +209,4 @@ const createProductView = (req, res, next) => {
     }
 }
 
-export { readAllProds, paginate, getProduct, create, update, deleteProd, showOneProduct, showProducts, showProductsInIndex, updateProductView, createProductView }
+export { readAllProds, paginate, getProduct, create, update, deleteProd, showOneProduct, showProducts, showProductsInIndex, updateProductView, createProductView, showpaginated }

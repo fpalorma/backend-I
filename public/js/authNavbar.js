@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }).then(response => {
       if (response.status === 401) {
         document.getElementById('profileLink').style.display = 'none';
+        document.getElementById('cartsLink').style.display = 'none';
         return;
       }
       return response.json();
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data && data.userId) {
         document.getElementById('profileLink').href = `/users/${data.userId}`;
         document.getElementById('profileLink').style.display = 'block';
+        document.getElementById('cartsLink').href = `/carts?user_id=${data.userId}`;
+        document.getElementById('cartsLink').style.display = 'block';
       }
     })
     .catch(error => {

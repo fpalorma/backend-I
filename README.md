@@ -1,5 +1,30 @@
 # BACKEND I - CODERHOUSE - COMISIÓN 70260
 Alumno: [Federico Palorma](https://www.linkedin.com/in/federico-palorma-dev/)
+## PROYECTO FINAL - CHALLENGE 3
+### Iniciar el proyecto
+Para ejecutar el proyecto en tu dispositivo local:
+
+ - Clonar el repositorio
+ - Abrirlo en el editor de código
+ - Asegurarse de estar en la rama challenge2
+ - Instalar paquetes de node `npm i` (instalará express, nodemon, morgan, entre otros módulos de Node.js)
+ - -Crear el archivo .env en la raiz del proyecto con las variables de entorno proveidas en la entrega
+ - Para correr el proyecto `npm run dev`
+
+## ACTUALIZACIONES:
+
+### Vistas:
+Migré todas las vistas a la base de datos de Mongo para poder usar todas las implementaciones con la db actualizada.
+Se creo la vista paginada de productos en el index del proyecto para ordenar los productos en páginas. Se pueden navegar las páginas usando los botones al final de la pantalla.
+También se agregó una vista del carrito. Esta vista solo está disponible para los usuarios que tengan productos en sus carritos (de momento la funcionalidad de agregar productos al carrito no esta implementada en el front por lo que deberá cargarse desde la api) pero se puede usar el usuario igna@wearcoder.com (pass: igna123) para revisarlo.
+
+### Migración a MongoDB e implementación de Mongoose
+Migré la base de datos a MongoDB y actualicé los controladores para poder usar Mongoose en mi proyecto.
+### Creación de carrito
+
+Realicé la creación de un carrito (carts). Este tiene su propia crud y cuenta con la funcionalidad de aggregate para calcular el total de los productos agregados.
+
+
 ## PROYECTO FINAL - CHALLENGE 2
 ### Iniciar el proyecto
 Para ejecutar el proyecto en tu dispositivo local:
@@ -9,7 +34,6 @@ Para ejecutar el proyecto en tu dispositivo local:
  - Asegurarse de estar en la rama challenge2
  - Instalar paquetes de node `npm i` (instalará express, nodemon, morgan, entre otros módulos de Node.js)
  - Para correr el proyecto `npm run dev`
- - [VIDEO DE MUESTRA](https://drive.google.com/file/d/1HUw2W8Uq8mpZqBJ621_1DnOHl2tiyoEn/view?usp=sharing)
 
 ## ACTUALIZACIONES:
 

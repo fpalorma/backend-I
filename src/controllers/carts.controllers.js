@@ -88,7 +88,26 @@ async function calculateTotal(req, res, next){
         return next(error)
     }
 }
+async function cartsView(req, res, next) {
+    try {
+        let filter = {};
+        if (req.query.user_id) {
+            filter.user_id = req.query.user_id;
+        }
+        const responseMongo = await cartsMongoManager.read(filter)
+        console.log(responseMongo);
+        if (responseMongo) {
+            return res.render("carts", { data: responseMongo })
+        } else {
+            const error = new Error("CART NOT FOUND")
+            error.statusCode = 404;
+            throw error
+        }
+
+    } catch (error) {
+        return next(error)
+    }
+}
 
 
-
-export { readAllCarts, getCart, create, update, deleteCart, calculateTotal }
+export { readAllCarts, getCart, create, update, deleteCart, calculateTotal,cartsView }
